@@ -16,20 +16,20 @@ using Map.Vision.General.Expansions;
 
 namespace Map.Vision.BI.Services
 {
-    public class Places : IPlaces, IAdmin, IPlaceGeocoding
+    public class Sensors : ISensors, IAdmin, ISensorGeocoding
     {
         private readonly IMapper _mapper;
         private readonly ServiceDbContext _context;
 
-        public Places(IMapper mapper, ServiceDbContext context)
+        public Sensors(IMapper mapper, ServiceDbContext context)
         {
             _mapper = mapper;
             _context = context;
         }
 
-        public async Task<bool> CreatePlace(PlaceInputDto place)
+        public async Task<bool> CreateSensor(SensorInputDto sensor)
         {
-            var entity = _mapper.Map<Place>(place);
+            var entity = _mapper.Map<Sensor>(sensor);
             await _context.AddAsync(entity);
 
             if (await _context.SaveChangesAsync() > 0)
@@ -38,9 +38,9 @@ namespace Map.Vision.BI.Services
             return false;
         }
 
-        public async Task<bool> RemovePlace(int id)
+        public async Task<bool> RemoveSensor(int id)
         {
-            var entity = await GetPlaces.FirstOrDefaultAsync(x => x.Id == id);
+            var entity = await GetSensors.FirstOrDefaultAsync(x => x.Id == id);
 
             if (entity is null)
                 return false;
@@ -51,57 +51,53 @@ namespace Map.Vision.BI.Services
             return true;
         }
 
-        public async Task<bool> UpdatePlace(PlaceInputDto place)
+        public async Task<bool> UpdateSensor(SensorInputDto sensor)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PlaceOutputDto> Get(int id)
+        public async Task<SensorOutputDto> Get(int id)
         {
-            var entity = await GetPlaces.FirstOrDefaultAsync(x => x.Id == id);
+            var entity = await GetSensors.FirstOrDefaultAsync(x => x.Id == id);
             if (entity is null)
                 return null;
-            return _mapper.Map<PlaceOutputDto>(entity);
+            return _mapper.Map<SensorOutputDto>(entity);
         }
 
-        public async Task<IList<Place>> Get(int[] ids)
+        public async Task<IList<Sensor>> Get(int[] ids)
         {
-            var entities = await GetPlaces.Where(x => ids.Contains(x.Id)).ToListAsync();
+            var entities = await GetSensors.Where(x => ids.Contains(x.Id)).ToListAsync();
             if (entities is null || entities.Count == 0)
                 return null;
             return entities;
         }
 
-        public async Task<IList<PlaceSmallDto>> GetAll(PlaceFilter filter)
+        public async Task<IList<SensorSmallDto>> GetAll(SensorFilter filter)
         {
-            var entity = GetPlaces.Filter(filter);
+            var entity = GetSensors.Filter(filter);
 
-            return _mapper.Map<List<Place>, List<PlaceSmallDto>>(await entity.ToListAsync());
+            return _mapper.Map<List<Sensor>, List<SensorSmallDto>>(await entity.ToListAsync());
         }
 
-        public async Task<IList<PlaceOutputDto>> GetAllFull(PlaceFilter filter)
+        public async Task<IList<SensorOutputDto>> GetAllFull(SensorFilter filter)
         {
-            var entity = GetPlaces.Filter(filter);
+            var entity = GetSensors.Filter(filter);
 
-            return _mapper.Map<List<Place>, List<PlaceOutputDto>>(await entity.ToListAsync());
+            return _mapper.Map<List<Sensor>, List<SensorOutputDto>>(await entity.ToListAsync());
         }
 
-        public async Task<Dictionary<int, Data.Base.Coordinates>> GetPlacesGeocords(Data.Base.Coordinates coornates)
+        public async Task<Dictionary<int, Data.Base.Coordinates>> GetSensorsGeocords(Data.Base.Coordinates coornates)
         {
-            var entity = await GetPlaces.Where(x => Math.Abs((x.Coordinates.Lat - (coornates.Lat + Data.Base.Coordinates._100MetrosForLat))) <= Data.Base.Coordinates._100MetrosForLat &&
+            var entity = await GetSensors.Where(x => Math.Abs((x.Coordinates.Lat - (coornates.Lat + Data.Base.Coordinates._100MetrosForLat))) <= Data.Base.Coordinates._100MetrosForLat &&
                                                             Math.Abs(x.Coordinates.Lng - (coornates.Lng + Data.Base.Coordinates._100MetrosForLng)) <= Data.Base.Coordinates._100MetrosForLng).ToDictionaryAsync(x => x.Id, s => _mapper.Map<Data.Base.Coordinates>(s.Coordinates));
 
             return entity;
         }
 
-        #region GetPlaces
+        #region GetSensors
 
-        private IQueryable<Place> GetPlaces =>
-                 _context.Places
-                            .Include(x => x.AudioGuide)
-                            .Include(x => x.AudioHistory)
-                            .Include(x => x.Avatar)
-                            .Include(x => x.Pictures)
+        private IQueryable<Sensor> GetSensors =>
+                 _context.Sensors
                             .Include(x => x.Coordinates);
 
         #endregion

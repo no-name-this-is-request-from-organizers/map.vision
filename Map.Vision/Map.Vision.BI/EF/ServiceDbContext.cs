@@ -11,14 +11,11 @@ namespace Map.Vision.EF
 {
     public partial class ServiceDbContext : DbContext
     {
-
-        public DbSet<Tour> Tours { get; set; }
-
-        public DbSet<Place> Places { get; set; }
+        public DbSet<Sensor> Sensors { get; set; }
 
         public ServiceDbContext(DbContextOptions<ServiceDbContext> option) : base(option)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

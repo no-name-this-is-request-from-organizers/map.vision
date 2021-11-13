@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace Map.Vision.Data.Filters
 {
-    public class PlaceFilter : FilterEntity<Place>
+    public class SensorFilter : FilterEntity<Sensor>
     {
 
     }

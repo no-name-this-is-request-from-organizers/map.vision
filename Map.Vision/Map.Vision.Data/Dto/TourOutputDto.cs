@@ -18,7 +18,7 @@ namespace Map.Vision.Data.Dto
 
         public PointType Type { get; set; }
 
-        public int[] PlacesIds { get; set; }
+        public int[] SensorsIds { get; set; }
 
         public string Avatar { get; set; }
 

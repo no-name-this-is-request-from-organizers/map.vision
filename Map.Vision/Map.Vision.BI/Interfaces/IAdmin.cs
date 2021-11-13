@@ -10,10 +10,10 @@ namespace Map.Vision.BI.Interfaces
 {
     public interface IAdmin
     {
-        Task<bool> CreatePlace(PlaceInputDto place);
+        Task<bool> CreateSensor(SensorInputDto sensor);
 
-        Task<bool> UpdatePlace(PlaceInputDto place);
+        Task<bool> UpdateSensor(SensorInputDto sensor);
 
-        Task<bool> RemovePlace(int id);
+        Task<bool> RemoveSensor(int id);
     }
 }

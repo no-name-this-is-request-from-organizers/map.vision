@@ -15,17 +15,14 @@ namespace Map.Vision.API.Configurations.Autofac
         {
             base.Load(builder);
 
-            builder.RegisterType<Places>()
+            builder.RegisterType<Sensors>()
                 .As<IAdmin>();
 
-            builder.RegisterType<Places>()
-                .As<IPlaces>();
+            builder.RegisterType<Sensors>()
+                .As<ISensors>();
 
-            builder.RegisterType<Places>()
-                .As<IPlaceGeocoding>();
-
-            builder.RegisterType<Tours>()
-                .As<ITours>();
+            builder.RegisterType<Sensors>()
+                .As<ISensorGeocoding>();
 
             builder.RegisterType<DataSend>()
                 .As<IDataSend>();
@@ -37,8 +34,6 @@ namespace Map.Vision.API.Configurations.Autofac
                 .As<IGeocoding>();
 
             builder.RegisterType<FormatterFileToAttachment>();
-
-            builder.RegisterType<FormatterPlaceIdToPlace>();
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {

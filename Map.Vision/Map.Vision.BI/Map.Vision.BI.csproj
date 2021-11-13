@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Map.Vision.Data\Map.Vision.Data.csproj" ReplaceParameters="true" />
-    <ProjectReference Include="..\Map.Vision.General\Map.Vision.General.csproj" ReplaceParameters="true" />
+    <ProjectReference Include="..\Map.Vision.Data\Map.Vision.Data.csproj" ResensorParameters="true" />
+    <ProjectReference Include="..\Map.Vision.General\Map.Vision.General.csproj" ResensorParameters="true" />
   </ItemGroup>
 
 </Project>

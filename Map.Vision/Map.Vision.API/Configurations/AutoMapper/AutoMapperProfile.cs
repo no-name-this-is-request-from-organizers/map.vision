@@ -15,29 +15,14 @@ namespace Map.Vision.API.Configurations.AutoMapper
     {
         public AutoMapperProfile()
         {
-            CreateMap<PlaceCreate, PlaceInputDto>()
-                .ForMember(x => x.AudioGuide, s => s.MapFrom(x => x.AudioGuide != null ? new Data.Base.Attachment()
-                {
-                    Stream = x.AudioGuide.OpenReadStream(),
-                    Name = x.AudioGuide.FileName
-                } : null))
-                .ForMember(x => x.Avatar, s => s.MapFrom(x => x.Avatar != null ? new Data.Base.Attachment()
-                {
-                    Stream = x.Avatar.OpenReadStream(),
-                    Name = x.Avatar.FileName
-                } : null))
-                .ForMember(x => x.AudioHistory, s => s.MapFrom(x => x.AudioHistory != null ? new Data.Base.Attachment()
-                {
-                    Stream = x.AudioHistory.OpenReadStream(),
-                    Name = x.AudioHistory.FileName
-                } : null))
-                .ForMember(x => x.Pictures, s => s.MapFrom(x => x.Pictures.Where(y => y != null).Select(y => new Data.Base.Attachment()
-                {
-                    Stream = y.OpenReadStream(),
-                    Name = y.FileName
-                }).ToListOrNull()));
+            CreateMap<SensorCreate, SensorInputDto>();
+           //     .ForMember(x => x.AudioHistory, s => s.MapFrom(x => x.AudioHistory != null ? new Data.Base.Attachment()
+           //     {
+           //         Stream = x.AudioHistory.OpenReadStream(),
+           //         Name = x.AudioHistory.FileName
+           //     } : null));
 
-            CreateMap<PlaceUpdate, PlaceInputDto>()
+            CreateMap<SensorUpdate, SensorInputDto>()
                 .ForMember(x => x.AudioGuide, s => s.MapFrom(x => x.AudioGuide != null ? new Data.Base.Attachment()
                 {
                     Stream =  x.AudioGuide.OpenReadStream(),
@@ -82,25 +67,11 @@ namespace Map.Vision.API.Configurations.AutoMapper
                     Stream = y.OpenReadStream(),
                     Name = y.FileName
                 }).ToListOrNull()));
+            CreateMap<SensorInputDto, Sensor>();
 
-            CreateMap<Tour, TourOutputDto>()
-                .ForMember(x => x.Avatar, s => s.MapFrom(x => x.Avatar.Url))
-                .ForMember(x => x.PlacesIds, s => s.MapFrom(x => x.Places.Select(y => y.Id).ToArray()))
-                .ForMember(x => x.Pictures, s => s.MapFrom(x => x.Pictures.Select(y => y.Url).ToList()));
+            CreateMap<Sensor, SensorOutputDto>();
 
-            CreateMap<TourInputDto, Tour>()
-                .ForMember(x => x.Places, s => s.MapFrom<FormatterPlaceIdToPlace>());
-
-            CreateMap<PlaceInputDto, Place>();
-
-            CreateMap<Place, PlaceOutputDto>()
-                .ForMember(x => x.Avatar, s => s.MapFrom(x => x.Avatar.Url))
-                .ForMember(x => x.AudioHistory, s => s.MapFrom(x => x.AudioHistory.Url))
-                .ForMember(x => x.AudioGuide, s => s.MapFrom(x => x.AudioGuide.Url))
-                .ForMember(x => x.Pictures, s => s.MapFrom(x => x.Pictures.Select(y => y.Url).ToList()));
-
-            CreateMap<Place, PlaceSmallDto>()
-                .ForMember(x => x.Avatar, s => s.MapFrom(x => x.Avatar.Url));
+            CreateMap<Sensor, SensorSmallDto>();
 
             CreateMap<Data.Base.Attachment, Data.Entity.Attachment>()
                 .ForMember(x => x.Url, s => s.MapFrom<FormatterFileToAttachment>());

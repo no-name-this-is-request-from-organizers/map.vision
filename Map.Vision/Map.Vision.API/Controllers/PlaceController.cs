@@ -16,39 +16,39 @@ namespace Map.Vision.API.Controllers
 {
     [ApiController]
     [Route("map/[Controller]")]
-    public class PlaceController : BaseController
+    public class SensorController : BaseController
     {
-        private readonly ILogger<PlaceController> _logger;
+        private readonly ILogger<SensorController> _logger;
         private readonly IMapper _mapper;
-        private readonly IPlaces _place;
+        private readonly ISensors _sensor;
 
-        public PlaceController(ILogger<PlaceController> logger, IMapper mapper, IPlaces place)
+        public SensorController(ILogger<SensorController> logger, IMapper mapper, ISensors sensor)
         {
             _logger = logger;
             _mapper = mapper;
-            _place = place;
+            _sensor = sensor;
         }
 
         [HttpGet("all")]
-        public async Task<IActionResult> GetAll([FromQuery] PlaceFilter filter)
+        public async Task<IActionResult> GetAll([FromQuery] SensorFilter filter)
         {
-            var result = await _place.GetAll(filter);
+            var result = await _sensor.GetAll(filter);
 
             return Ok(result);
         }
 
         [HttpGet("all/full-data")]
-        public async Task<IActionResult> GetFullData([FromQuery] PlaceFilter filter)
+        public async Task<IActionResult> GetFullData([FromQuery] SensorFilter filter)
         {
-            var result = await _place.GetAllFull(filter);
+            var result = await _sensor.GetAllFull(filter);
 
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPlace(int id)
+        public async Task<IActionResult> GetSensor(int id)
         {
-            var result = await _place.Get(id);
+            var result = await _sensor.Get(id);
 
             return Ok(result);
         }

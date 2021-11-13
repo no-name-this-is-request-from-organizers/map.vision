@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Map.Vision.Data\Map.Vision.Data.csproj" ReplaceParameters="true"/>
+    <ProjectReference Include="..\Map.Vision.Data\Map.Vision.Data.csproj" ResensorParameters="true"/>
   </ItemGroup>
 
 </Project>

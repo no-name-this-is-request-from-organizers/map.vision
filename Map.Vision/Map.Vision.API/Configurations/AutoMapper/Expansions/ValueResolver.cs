@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using Map.Vision.BI.Interfaces;
 using Map.Vision.Data.Base;
 using Map.Vision.Data.Dto;
-using Map.Vision.Data.Entity;
 
 namespace Map.Vision.API.Configurations.AutoMapper
 {
@@ -51,25 +50,4 @@ namespace Map.Vision.API.Configurations.AutoMapper
             await _attachments.Upload(source);
     }
 
-    public class FormatterPlaceIdToPlace : IValueResolver<TourInputDto, Tour, IList<Place>>
-    {
-        private readonly IPlaces _places;
-        private readonly IMapper _mapper;
-
-        public FormatterPlaceIdToPlace(IPlaces places, IMapper mapper)
-        {
-            _places = places;
-            _mapper = mapper;
-        }
-
-        public IList<Place> Resolve(TourInputDto source, Tour destination, IList<Place> result, ResolutionContext context)
-        {
-            return GetPlaces(source.PlacesIds).GetAwaiter().GetResult();
-        }
-
-        private async Task<IList<Place>> GetPlaces(int[] ids) =>
-            await _places.Get(ids);
-    }
 }
-
-//FormatterPlaceIdToPlace

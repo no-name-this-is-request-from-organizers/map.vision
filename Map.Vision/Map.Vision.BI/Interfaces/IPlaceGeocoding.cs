@@ -7,8 +7,8 @@ using Map.Vision.Data.Base;
 
 namespace Map.Vision.BI.Interfaces
 {
-    public interface IPlaceGeocoding
+    public interface ISensorGeocoding
     {
-        Task<Dictionary<int, Data.Base.Coordinates>> GetPlacesGeocords(Coordinates coordinates);
+        Task<Dictionary<int, Data.Base.Coordinates>> GetSensorsGeocords(Coordinates coordinates);
     }
 }

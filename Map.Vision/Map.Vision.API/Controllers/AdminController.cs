@@ -29,10 +29,10 @@ namespace Map.Vision.API.Controllers
             _admin = admin;
         }
 
-        [HttpPost("add-place")]
-        public async Task<IActionResult> AddPlace([FromForm] PlaceCreate model)
+        [HttpPost("add-sensor")]
+        public async Task<IActionResult> AddSensor([FromForm] SensorCreate model)
         {
-            var result = await _admin.CreatePlace(_mapper.Map<PlaceInputDto>(model));
+            var result = await _admin.CreateSensor(_mapper.Map<SensorInputDto>(model));
 
             if (!result)
                 return BadRequest("Непредвиденная ошибка!");
@@ -40,10 +40,10 @@ namespace Map.Vision.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost("update-place")]
-        public async Task<IActionResult> UpdatePlace([FromForm] PlaceCreate model)
+        [HttpPost("update-sensor")]
+        public async Task<IActionResult> UpdateSensor([FromForm] SensorCreate model)
         {
-            var result = await _admin.UpdatePlace(_mapper.Map<PlaceInputDto>(model));
+            var result = await _admin.UpdateSensor(_mapper.Map<SensorInputDto>(model));
 
             if (!result)
                 return BadRequest("Непредвиденная ошибка!");

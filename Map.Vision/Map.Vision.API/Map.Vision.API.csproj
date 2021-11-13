@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Map.Vision.BI\Map.Vision.BI.csproj" ReplaceParameters="true" />
+    <ProjectReference Include="..\Map.Vision.BI\Map.Vision.BI.csproj" ResensorParameters="true" />
   </ItemGroup>
 
 

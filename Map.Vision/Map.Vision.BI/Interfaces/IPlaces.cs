@@ -10,14 +10,14 @@ using Map.Vision.Data.Entity;
 
 namespace Map.Vision.BI.Interfaces
 {
-    public interface IPlaces
+    public interface ISensors
     {
-        Task<PlaceOutputDto> Get(int id);
+        Task<SensorOutputDto> Get(int id);
 
-        Task<IList<Place>> Get(int[] ids);
+        Task<IList<Sensor>> Get(int[] ids);
 
-        Task<IList<PlaceSmallDto>> GetAll(PlaceFilter filter);
+        Task<IList<SensorSmallDto>> GetAll(SensorFilter filter);
 
-        Task<IList<PlaceOutputDto>> GetAllFull(PlaceFilter filter);
+        Task<IList<SensorOutputDto>> GetAllFull(SensorFilter filter);
     }
 }

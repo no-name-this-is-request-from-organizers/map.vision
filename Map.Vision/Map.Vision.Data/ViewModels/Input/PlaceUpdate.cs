@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Map.Vision.Data.ViewModels.Input
 {
-    public class PlaceUpdate
+    public class SensorUpdate
     {
         [Required(ErrorMessage = "ID должен быть обязателен для редактироания!")]
         public int Id { get; set; }

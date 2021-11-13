@@ -18,7 +18,7 @@ namespace Map.Vision.Data.ViewModels.Input
         public string Description { get; set; }
 
         [MinLength(2, ErrorMessage = "Маршрут должен содержать минимум две точки!")]
-        public int[] PlacesIds { get; set; }
+        public int[] SensorsIds { get; set; }
 
         public IFormFile Avatar { get; set; }
 

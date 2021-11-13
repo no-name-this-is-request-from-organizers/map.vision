@@ -11,16 +11,16 @@ namespace Map.Vision.BI.Services
 {
     public class Geocoding : IGeocoding
     {
-        private readonly IPlaceGeocoding _places;
+        private readonly ISensorGeocoding _sensors;
 
-        public Geocoding(IPlaceGeocoding places)
+        public Geocoding(ISensorGeocoding sensors)
         {
-            _places = places;
+            _sensors = sensors;
         }
 
         public async Task<int> GetObjectsNearby(Coordinates coordinates)
         {
-            var result = await _places.GetPlacesGeocords(coordinates);
+            var result = await _sensors.GetSensorsGeocords(coordinates);
             if (result == null || result.Count == 0)
                 return 0;
 

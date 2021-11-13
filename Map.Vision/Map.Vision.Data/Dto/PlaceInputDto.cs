@@ -8,7 +8,7 @@ using Map.Vision.Data.Enums;
 
 namespace Map.Vision.Data.Dto
 {
-    public class PlaceInputDto
+    public class SensorInputDto
     {
         public int? Id { get; set; }
 
