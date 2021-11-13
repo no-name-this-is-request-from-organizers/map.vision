@@ -41,7 +41,7 @@ namespace Map.Vision.API.Controllers
         }
 
         [HttpPost("update-sensor")]
-        public async Task<IActionResult> UpdateSensor([FromForm] SensorCreate model)
+        public async Task<IActionResult> UpdateSensor([FromForm] SensorUpdate model)
         {
             var result = await _admin.UpdateSensor(_mapper.Map<SensorInputDto>(model));
 

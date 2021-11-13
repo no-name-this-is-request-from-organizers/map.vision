@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Map.Vision.Data.Base;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
+using Map.Vision.Data.Enums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Map.Vision.Data.ViewModels.Input
 {
@@ -18,16 +21,9 @@ namespace Map.Vision.Data.ViewModels.Input
 
         public string Description { get; set; }
 
-        public string SmallDescription { get; set; }
-
         public Coordinates Coordinates { get; set; }
 
-        public IFormFile Avatar { get; set; }
-
-        public IFormFileCollection Pictures { get; set; }
-
-        public IFormFile AudioGuide { get; set; }
-
-        public IFormFile AudioHistory { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PointType Type { get; set; }
     }
 }
