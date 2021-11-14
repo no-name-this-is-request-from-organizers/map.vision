@@ -12,6 +12,6 @@ namespace Map.Vision.Data.Enums
         PTZCamera,
         CO2Sensor,
         SmokeSensor,
-
+        ANIMALE
     }
 }

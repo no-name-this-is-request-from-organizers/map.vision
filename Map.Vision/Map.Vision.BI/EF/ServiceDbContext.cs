@@ -15,7 +15,7 @@ namespace Map.Vision.EF
 
         public ServiceDbContext(DbContextOptions<ServiceDbContext> option) : base(option)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
